@@ -3,5 +3,5 @@ Projetos visando aplicar conhecimento adquirido durante curso de REST API com No
 
 ## Ferramentas utilizadas na solução
 ```sh
-npm install express nodemon mongoose
+npm install express nodemon mongoose dotenv
 ```
