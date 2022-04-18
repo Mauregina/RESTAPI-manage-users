@@ -14,6 +14,8 @@ Projetos visando aplicar conhecimento adquirido durante curso de REST API com No
 ```sh
 npm install express nodemon mongoose dotenv
 ```
-
+```sh
+npm install body-parser --save
+```
 * Visual Studio SCode
 * Mongo Atlas
