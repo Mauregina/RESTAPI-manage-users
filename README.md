@@ -19,6 +19,6 @@ npm install body-parser --save
 ```
 ```sh
 ```
-npm install -bcrypt --save
+npm install bcrypt --save
 * Visual Studio SCode
 * Mongo Atlas
