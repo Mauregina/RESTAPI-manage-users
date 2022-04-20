@@ -9,6 +9,9 @@ Projetos visando aplicar conhecimento adquirido durante curso de REST API com No
 * Cadastrar Pessoas
 * Atualizar Pessoas
 * Deletar Pessoas
+* Criar Usuário
+* Autenticar Usuário
+* Visualizar Uusário
 
 ## Ferramentas utilizadas na solução
 ```sh
