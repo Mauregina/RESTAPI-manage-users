@@ -9,7 +9,13 @@
 			"name": "ResgatarPessoas",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{url}}/person",
 					"host": [
@@ -26,15 +32,21 @@
 			"name": "ResgatarPessoaPorId",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "{{url}}/person/625884d618bbe6e7685168c5",
+					"raw": "{{url}}/person/625e01db57d94370982938f6",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"person",
-						"625884d618bbe6e7685168c5"
+						"625e01db57d94370982938f6"
 					]
 				}
 			},
@@ -44,15 +56,28 @@
 			"name": "DeletarPessoa",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "{{url}}/person/62588a9d09e7786effa46416",
+					"raw": "{{url}}/person/625e01db57d94370982938f6",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"person",
-						"62588a9d09e7786effa46416"
+						"625e01db57d94370982938f6"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -62,10 +87,16 @@
 			"name": "CriarPessoa",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juliete Camargo\",\r\n    \"salary\": 12500,\r\n    \"approved\": true\r\n}",
+					"raw": "{\r\n    \"name\": \"Maura Costa\",\r\n    \"salary\": 9000,\r\n    \"approved\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,6 +110,13 @@
 					],
 					"path": [
 						"person"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -88,10 +126,16 @@
 			"name": "AlterarPessoa",
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Carmem Luiza dos Santos\",\r\n    \"salary\": 4000,\r\n    \"approved\": false\r\n}",
+					"raw": "{\r\n    \"name\": \"Maura Costa\",\r\n    \"salary\": 15000,\r\n    \"approved\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -99,13 +143,113 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/person/62587b598f5dbc68fd0f7ba4",
+					"raw": "{{url}}/person/62603d719f6a8a421edc2d66",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"person",
-						"62587b598f5dbc68fd0f7ba4"
+						"62603d719f6a8a421edc2d66"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ResgatarUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CriarUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.collectionVariables.set(\"authorization\", responseJson.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"teste2\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Autenticar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.collectionVariables.set(\"authorization\", responseJson.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/auth",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"auth"
 					]
 				}
 			},
@@ -137,6 +281,10 @@
 			"key": "url",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "authorization",
+			"value": ""
 		}
 	]
 }
