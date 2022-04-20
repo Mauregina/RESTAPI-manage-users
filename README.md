@@ -18,7 +18,10 @@ npm install express nodemon mongoose dotenv
 npm install body-parser --save
 ```
 ```sh
+npm install jsonwebtoken --save
 ```
+```sh
 npm install bcrypt --save
+```
 * Visual Studio SCode
 * Mongo Atlas
