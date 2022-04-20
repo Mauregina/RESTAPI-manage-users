@@ -1,6 +1,11 @@
 const router = require('express').Router()
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
+const createUserToken = (userId) => {
+    return jwt.sign({id: userId}, 'senha123', {expiresIn: '1d'})
+}
 
 router.get('/', async(req, res)=> {
     try{
@@ -26,9 +31,10 @@ router.post('/', async(req, res)=>{
             return
         }
 
-        new_user = await User.create(req.body)
+        const new_user = await User.create(req.body)
         new_user.password = undefined
-        res.status(201).json(new_user)
+
+        res.status(201).json({new_user, token: createUserToken(new_user._id)})
     } catch(error){
         res.status(500).json({error: error})
     }
@@ -49,7 +55,7 @@ router.post('/auth', async(req, res) => {
 
         bcrypt.compare(password, user_found.password, (err, isValid)=>{
             if (!isValid) return res.status(422).json({error: 'Senha inválida!'}) 
-            res.status(201).json({message: "Usuário ''" + user + "'' autenticado"})
+            res.status(201).json({message: "Usuário ''" + user + "'' autenticado", token: createUserToken(user_found._id)})
         });
 
     } catch(error){

@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const Person = require('../models/Person')
+const auth = require('../middlewares/auth')
 
-router.post('/', async(req, res)=> {
+router.post('/', auth, async(req, res)=> {
     const {name, salary, approved} = req.body
 
     if (!name){
@@ -23,9 +24,10 @@ router.post('/', async(req, res)=> {
     }
 })
 
-router.get('/', async(req, res)=> {
+router.get('/', auth, async(req, res)=> {
     try{
         const people = await Person.find()
+        console.log(res.locals.auth_data)
         res.status(200).json(people)
 
     } catch(error){
@@ -33,7 +35,7 @@ router.get('/', async(req, res)=> {
     }
 })
 
-router.get('/:id', async(req, res)=> {
+router.get('/:id', auth, async(req, res)=> {
     const id = req.params.id
 
     try{
@@ -51,7 +53,7 @@ router.get('/:id', async(req, res)=> {
     }
 })
 
-router.patch('/:id', async(req, res)=> {
+router.patch('/:id', auth, async(req, res)=> {
     const id = req.params.id
     const {name, salary, approved} = req.body    
     const person = {
@@ -75,7 +77,7 @@ router.patch('/:id', async(req, res)=> {
     }
 })
 
-router.delete('/:id', async(req, res)=> {
+router.delete('/:id', auth, async(req, res)=> {
     const id = req.params.id
 
     try{
