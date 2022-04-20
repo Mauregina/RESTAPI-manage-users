@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const bodyParser = require('body-parser')
+const config = require('./config/config')
 
 app.use(
     express.urlencoded({
@@ -18,9 +19,7 @@ const userRoutes = require('./routes/userRoutes')
 app.use('/person', personRoutes)
 app.use('/user', userRoutes)
 
-const DB_USER = process.env.DB_USER
-const DB_PASSWORD = process.env.DB_PASSWORD
-const url = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@apicluster.0svze.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const url = config.bd_string
 
 mongoose.connect(url)
 .then(()=>{
