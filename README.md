@@ -1,19 +1,19 @@
 # RESTAPI 
 
-Projetos visando aplicar conhecimento adquirido durante curso de REST API com Node.js e Express.
+Projects aiming to apply knowledge acquired during the REST API course with Node.js and Express.
 
-## APIs disponíveis
+## API
 
-* Visualizar Pessoas
-* Visualizar Pessoa por ID
-* Cadastrar Pessoas
-* Atualizar Pessoas
-* Deletar Pessoas
-* Criar Usuário
-* Autenticar Usuário
-* Visualizar Uusário
+- View People
+- View Person by ID
+- Register People
+- Update People
+- Delete People
+- Create User
+- Authenticate User
+- View User
 
-## Ferramentas utilizadas na solução
+## Tools
 ```sh
 npm install express nodemon mongoose dotenv
 ```
