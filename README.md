@@ -1,4 +1,4 @@
-# RESTAPI 
+# Manage Users 
 
 Projects aiming to apply knowledge acquired during the REST API course with Node.js and Express.
 
